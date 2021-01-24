@@ -1,14 +1,29 @@
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
+import FilterInput from './components/FilterInput.jsx';
+import Table from './components/Table.jsx';
+import { getUsers } from './utils/API.jsx';
 import './App.css';
 
 function App() {
+  const [initialUsers, updateAvailableUsers] = useState([]);
+  const [usersToRender, updateUsersToRender] = useState([]);
+
+  useEffect(() => {
+    getUsers().then(({ data: { results } }) => updateAvailableUsers(results));
+  }, []);
+
   return (
     <div className='App'>
-      <header className='App-header'>
-        <h1>Matt's App</h1>
-      </header>
+      <h1>Employee Directory</h1>
+      <p>
+        To filter by first name, please begin your search in the user input
+        below
+      </p>
+      <FilterInput users={initialUsers} updateUsers={updateUsersToRender} />
+      <Table users={usersToRender} />
     </div>
   );
 }
 
 export default App;
+//test
