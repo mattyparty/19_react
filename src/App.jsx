@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Container from './components/Container.jsx';
 import FilterInput from './components/FilterInput.jsx';
 import Table from './components/Table.jsx';
 import { getUsers } from './utils/API.jsx';
@@ -13,15 +14,18 @@ function App() {
   }, []);
 
   return (
-    <div className='App'>
-      <h1>Employee Directory</h1>
-      <p>
-        To filter by first name, please begin your search in the user input
-        below
-      </p>
-      <FilterInput users={initialUsers} updateUsers={updateUsersToRender} />
-      <Table users={usersToRender} />
-    </div>
+    <Container fluid={true}>
+      <div className='App'>
+        <h1>Employee Directory</h1>
+        <p>
+          To filter by first name, please begin your search in the user input
+          below
+        </p>
+        <FilterInput users={initialUsers} updateUsers={updateUsersToRender} />
+
+        <Table users={usersToRender} dark={true} className='mt-2' />
+      </div>
+    </Container>
   );
 }
 

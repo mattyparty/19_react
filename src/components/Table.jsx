@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 
-const Table = ({ users }) => {
+const Table = ({ users, dark }) => {
   const [sortedUsers, updateSortedUsers] = useState([]);
 
   useEffect(() => updateSortedUsers(users), [users]);
 
   return (
-    <div>
+    <div className='mt-2'>
       <table className='table'>
-        <thead>
+        <thead className={`${dark ? 'thead-dark' : ''}`}>
           <tr>
             <th scope='col'>picture</th>
             <th scope='col'>title</th>
@@ -33,10 +33,32 @@ const Table = ({ users }) => {
                 updateSortedUsers(updateSort);
               }}
             >
-              First
+              First &#9660;
             </th>
 
-            <th scope='col'>Last</th>
+            <th
+              scope='col'
+              onClick={() => {
+                const usersCopy = [...users];
+                const updateSort = usersCopy.sort((a, b) => {
+                  const nameA = a.name.last;
+                  const nameB = b.name.last;
+
+                  if (nameA < nameB) {
+                    return -1;
+                  }
+                  if (nameA > nameB) {
+                    return 1;
+                  }
+
+                  return 0;
+                });
+
+                updateSortedUsers(updateSort);
+              }}
+            >
+              Last &#9660;
+            </th>
             <th scope='col'>gender</th>
             <th scope='col'>email</th>
             <th scope='col'>phone</th>
@@ -64,7 +86,7 @@ const Table = ({ users }) => {
                 </td>
                 <td>{title}</td>
                 <th>{first}</th>
-                <td>{last}</td>
+                <th>{last}</th>
                 <td>{gender}</td>
                 <td>{email}</td>
                 <td>{phone}</td>
