@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+// create state for sorted users and function to update
 const Table = ({ users, dark }) => {
   const [sortedUsers, updateSortedUsers] = useState([]);
 
@@ -38,6 +38,7 @@ const Table = ({ users, dark }) => {
 
             <th
               scope='col'
+              // on click funtion to sort users
               onClick={() => {
                 const usersCopy = [...users];
                 const updateSort = usersCopy.sort((a, b) => {
