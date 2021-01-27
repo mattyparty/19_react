@@ -23,7 +23,7 @@ function App() {
         </p>
         <FilterInput users={initialUsers} updateUsers={updateUsersToRender} />
 
-        <Table users={usersToRender} dark={true} className='mt-2' />
+        <Table users={usersToRender} dark={true}  />
       </div>
     </Container>
   );
