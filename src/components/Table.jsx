@@ -71,6 +71,7 @@ const Table = ({ users, dark }) => {
           </tr>
         </thead>
         <tbody>
+          {/* call data from API to populate table */}
           {sortedUsers.map(
             ({
               location: { city, state, country, postcode },
@@ -83,7 +84,7 @@ const Table = ({ users, dark }) => {
             }) => (
               <tr key={email}>
                 <td>
-                  <img src={thumbnail} />
+                  <img src={thumbnail} alt='thumbnail' />
                 </td>
                 <td>{title}</td>
                 <th>{first}</th>
